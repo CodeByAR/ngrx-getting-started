@@ -19,7 +19,7 @@ import { UserModule } from './user/user.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { userReducer } from './user/state/user.reducer';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   imports: [
@@ -34,6 +34,7 @@ import { userReducer } from './user/state/user.reducer';
       maxAge: 25,
       logOnly: environment.production,
     }),
+    EffectsModule.forRoot([]),
   ],
   declarations: [
     AppComponent,
