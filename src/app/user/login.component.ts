@@ -5,8 +5,8 @@ import { Store } from '@ngrx/store';
 import { State } from '../state/app.state';
 
 import { AuthService } from './auth.service';
-import { getMaskUserName } from './state/user.reducer';
-import * as UserActions from './state/user.actions';
+import { getMaskUserName } from './state';
+import { UserPageActions } from './state/actions';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   checkChanged(): void {
-    this.store.dispatch(UserActions.maskUserName());
+    this.store.dispatch(UserPageActions.maskUserName());
     // this.maskUserName = !this.maskUserName;
   }
 

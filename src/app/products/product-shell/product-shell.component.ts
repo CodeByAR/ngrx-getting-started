@@ -12,7 +12,7 @@ import {
   getShowProductCode,
   State,
 } from '../state';
-import * as ProductActions from '../state/product.actions';
+import { ProductPageActions } from '../state/actions';
 
 @Component({
   templateUrl: './product-shell.component.html',
@@ -28,7 +28,7 @@ export class ProductShellComponent implements OnInit {
   constructor(private store: Store<State>) {}
 
   ngOnInit(): void {
-    this.store.dispatch(ProductActions.loadProducts());
+    this.store.dispatch(ProductPageActions.loadProducts());
     this.products$ = this.store.select(getProducts);
     this.errorMessage$ = this.store.select(getError);
     this.selectedProduct$ = this.store.select(getCurrentProduct);
@@ -36,14 +36,30 @@ export class ProductShellComponent implements OnInit {
   }
 
   checkChanged(): void {
-    this.store.dispatch(ProductActions.toggleProductCode());
+    this.store.dispatch(ProductPageActions.toggleProductCode());
   }
 
   newProduct(): void {
-    this.store.dispatch(ProductActions.initializeCurrentProduct());
+    this.store.dispatch(ProductPageActions.initializeCurrentProduct());
   }
 
   productSelected(product: Product): void {
-    this.store.dispatch(ProductActions.setCurrentProduct({ currentProductId: product.id }));
+    this.store.dispatch(ProductPageActions.setCurrentProduct({ currentProductId: product.id }));
+  }
+
+  deleteProduct(product: Product): void {
+    this.store.dispatch(ProductPageActions.deleteProduct({ productId: product.id }));
+  }
+
+  clearProduct(): void {
+    this.store.dispatch(ProductPageActions.clearCurrentProduct());
+  }
+  
+  saveProduct(product: Product): void {
+    this.store.dispatch(ProductPageActions.createProduct({ product }));
+  }
+
+  updateProduct(product: Product): void {
+    this.store.dispatch(ProductPageActions.updateProduct({ product }));
   }
 }
