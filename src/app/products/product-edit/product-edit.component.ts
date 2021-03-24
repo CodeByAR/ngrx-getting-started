@@ -4,14 +4,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 
 import { Product } from '../product';
-import { ProductService } from '../product.service';
 import { GenericValidator } from '../../shared/generic-validator';
 import { NumberValidators } from '../../shared/number.validator';
 
 /* NgRx */
 import { Store } from '@ngrx/store';
 import * as ProductActions from '../state/product.actions';
-import { getCurrentProduct, State } from '../state/product.reducer';
+import { getCurrentProduct, State } from '../state';
 import { tap } from 'rxjs/operators';
 
 @Component({
